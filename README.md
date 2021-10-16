@@ -7,7 +7,7 @@ Drop-in `.conf` files for sandboxing systemd services.
 View the `guide.conf` file in the root of this repository for a short explanation of each option. Most comments come from `systemd.exec(5)` and `systemd.resource-control(5)` man pages. Most options come from all of the options that `systemd-analyze security` uses to score a service.
 
 ## Installation
-`systemd edit [service]` and paste the hardening.conf contents under `### Anything between here and the comment below will become the new contents of the file`
+`systemctl edit [service]` and paste the hardening.conf contents under `### Anything between here and the comment below will become the new contents of the file`
 
 ### cupsd
 The cupsd overrides have only been tested with an HP printer on the local network. Printers from other manufacturers or printers connected via a different interface (e.g. USB, SAMBA, etc.) may not work. Patches accepted.
