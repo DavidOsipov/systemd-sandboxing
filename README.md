@@ -7,34 +7,7 @@ Drop-in `.conf` files for sandboxing systemd services.
 View the `guide.conf` file in the root of this repository for a short explanation of each option. Most comments come from `systemd.exec(5)` and `systemd.resource-control(5)` man pages. Most options come from all of the options that `systemd-analyze security` uses to score a service.
 
 ## Installation
-Simply copy the `*.service.d` files to `/etc/systemd/system/`.
-
-### Arch Linux
-If you want to install as a package, I maintain a PKGBUILD:
-
-```
-$ git clone https://github.com/krathalan/pkgbuilds
-$ cd pkgbuilds/krathalans-systemd-sandboxing-git
-$ less PKGBUILD # Always inspect PKGBUILDS before running makepkg!
-$ makepkg -i
-```
-
-This package installs `.conf` files to `/usr/lib/systemd/system/*.service.d/`.
-
-## Services
-
-- bluetooth
-- dictd
-- dovecot
-- fail2ban
-- iwd
-- nginx
-- opendkim
-- opendmarc
-- org.cups.cupsd
-- pkgstats
-- postfix
-- usbguard
+`systemd edit [service]` and paste the hardening.conf contents under `### Anything between here and the comment below will become the new contents of the file`
 
 ### cupsd
 The cupsd overrides have only been tested with an HP printer on the local network. Printers from other manufacturers or printers connected via a different interface (e.g. USB, SAMBA, etc.) may not work. Patches accepted.
