@@ -1,4 +1,4 @@
-### This is a fork of krathalan's systemd-sanboxing repo. Be aware, the changes here are being made by a Linux newbie - me. I'm playing around with configurations, restarting affected services on Ubuntu 20.04 and looking through error logs to understand if sandboxing configs are breaking apps.
+### This is a fork of krathalan's systemd-sanboxing repo. Be aware, the changes here are being made by a Linux newbie - me. I'm playing around with configurations, restarting affected services on Ubuntu 21.04 and looking through error logs to understand if sandboxing configs are breaking apps.
 
 ## systemd-sandboxing
 Drop-in `.conf` files for sandboxing systemd services.
