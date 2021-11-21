@@ -1,0 +1,46 @@
+# Last Modified: Tue Nov  2 21:58:31 2021
+include <tunables/global>
+
+# Author: Simon Deziel
+# vim:syntax=apparmor
+
+
+/usr/sbin/unbound flags=(attach_disconnected) {
+  include <abstractions/base>
+  include <abstractions/nameservice>
+  include <abstractions/openssl>
+  include <local/usr.sbin.unbound>
+
+  capability chown,
+  capability fowner,
+  capability fsetid,
+  capability net_admin,
+  capability net_bind_service,
+  capability setgid,
+  capability setuid,
+  capability sys_chroot,
+  capability sys_resource,
+
+  audit deny /etc/unbound/unbound_control.{key,pem} rw,
+  audit deny /etc/unbound/unbound_server.key w,
+  audit deny /var/lib/unbound/**/unbound_control.{key,pem} rw,
+  audit deny /var/lib/unbound/**/unbound_server.key w,
+
+  /etc/unbound/** r,
+  /etc/unbound/var/log/unbound.log wk,
+  /etc/unbound/var/lib/unbound/root.key rw,
+  /etc/unbound/var/lib/unbound/root.hints r,
+  /usr/sbin/unbound mr,
+  /usr/share/dns/root.* r,
+  /var/lib/sss/mc/initgroups r,
+  /var/lib/unbound/** r,
+  /var/lib/unbound/root.hints rw,
+  /var/lib/unbound/root.key rw,
+  /{,var/}run/systemd/notify w,
+  /{,var/}run/unbound.ctl rw,
+  /{,var/}run/{unbound/,}unbound.pid rw,
+  owner /etc/unbound/** rw,
+  owner /etc/unbound/*.key* rw,
+  owner /var/lib/unbound/** rw,
+
+}
