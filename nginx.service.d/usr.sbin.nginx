@@ -1,0 +1,75 @@
+# Last Modified: Sun Nov 21 10:03:54 2021
+include <tunables/global>
+
+/usr/sbin/nginx {
+  include <abstractions/apache2-common>
+  include <abstractions/base>
+  include <abstractions/nameservice>
+  include <abstractions/openssl>
+  include <abstractions/ssl_keys>
+  include <abstractions/totem>
+  include <abstractions/web-data>
+
+  capability chown,
+  capability dac_override,
+  capability dac_read_search,
+  capability setgid,
+  capability setuid,
+
+  deny / rw,
+  deny /bin/bash r,
+
+  /etc/crowdsec/bouncers/* r,
+  /etc/letsencrypt/live/** r,
+  /etc/nginx/** r,
+  /etc/nginx/nginx.conf r,
+  /etc/nginx/nginxconfig.io/* r,
+  /etc/nginx/sites-enabled/* r,
+  /proc/1/environ r,
+  /proc/cmdline r,
+  /proc/sys/kernel/osrelease r,
+  /run/cloudflared/* rw,
+  /run/nginx/** rw,
+  /run/systemd/userdb/ r,
+  /run/systemd/userdb/io.systemd.DynamicUser rw,
+  /usr/local/lua/crowdsec/** rw,
+  /usr/local/modsecurity/lib/lib*so* mr,
+  /usr/sbin/nginx mr,
+  /var/lib/nginx/** rw,
+  /var/log/modsec_audit.log wk,
+  /var/log/nginx/*.log w,
+  /var/log/nginx/modsec_audit.log wk,
+  /var/ngx_pagespeed_cache/** rw,
+  owner /etc/nginx/bots.d/*.conf r,
+  owner /etc/nginx/conf.d/*.conf r,
+  owner /etc/nginx/custom-config/*.conf r,
+  owner /etc/nginx/dhparam r,
+  owner /etc/nginx/mime.types r,
+  owner /etc/nginx/modsec/*.conf r,
+  owner /etc/nginx/modsec/3.3.2/crs-setup.conf r,
+  owner /etc/nginx/modsec/3.3.2/rules/REQUEST-901-INITIALIZATION.conf r,
+  owner /etc/nginx/modsec/3.3.2/rules/REQUEST-903.9001-DRUPAL-EXCLUSION-RULES.conf r,
+  owner /etc/nginx/modsec/3.3.2/rules/REQUEST-903.9002-WORDPRESS-EXCLUSION-RULES.conf r,
+  owner /etc/nginx/modsec/3.3.2/rules/REQUEST-903.9003-NEXTCLOUD-EXCLUSION-RULES.conf r,
+  owner /etc/nginx/modsec/3.3.2/rules/REQUEST-903.9004-DOKUWIKI-EXCLUSION-RULES.conf r,
+  owner /etc/nginx/modsec/3.3.2/rules/REQUEST-903.9005-CPANEL-EXCLUSION-RULES.conf r,
+  owner /etc/nginx/modsec/3.3.2/rules/REQUEST-903.9006-XENFORO-EXCLUSION-RULES.conf r,
+  owner /etc/nginx/modsec/3.3.2/rules/REQUEST-905-COMMON-EXCEPTIONS.conf r,
+  owner /etc/nginx/modsec/3.3.2/rules/REQUEST-910-IP-REPUTATION.conf r,
+  owner /etc/nginx/modsec/3.3.2/rules/REQUEST-911-METHOD-ENFORCEMENT.conf r,
+  owner /etc/nginx/modsec/owasp-modsecurity-crs/**.conf r,
+  owner /etc/nginx/modsec/owasp-modsecurity-crs/**.data r,
+  owner /etc/nginx/modsec/unicode.mapping r,
+  owner /etc/nginx/modules-available/*.so mr,
+  owner /etc/nginx/modules-enabled/* r,
+  owner /etc/nginx/sites-available/* r,
+  owner /etc/nginx/uwsgi_params r,
+  owner /run/nginx/modsec/* r,
+  owner /run/nginx/nginx.pid rw,
+  owner /run/cloudflared/dns.david-osipov.vision.sock rw,
+  owner /usr/share/GeoIP/*.mmdb r,
+  owner /var/cache/nginx/** rw,
+  owner /var/log/crowdsec_lua_bouncer.log rw,
+  owner /var/log/private/nginx/error.log w,
+
+}
